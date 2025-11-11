@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>XV — Lucia Tatiana Cardozo</title>
+<meta name="description" content="Invitación digital — 15 años de Lucia Tatiana Cardozo">
+
+<!-- Desactiva el modo oscuro automático -->
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<style>
+  html {
+    color-scheme: light;
+  }
+</style>
+
+<!-- Tipografías elegantes -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Great+Vibes&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Paleta del ejemplo (azules suaves, dorado tenue) */
+    --papel:#fffdf9;
+    --tinta:#3b5474;
+    --celeste:#9fc9ef;
+    --celeste-2:#7fb3e3;
+    --dorado:#c9a64a;
+    --muted:#6f86a0;
+
+    --azul-fondo:#0f2744;
+    --radius:26px;
+    --elev:0 12px 28px rgba(0,0,0,.18);
+  }
+  ,:before,*:after{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; background: linear-gradient(135deg, #0b2038, var(--azul-fondo));
+    color:var(--tinta); font-family:"Libre Baskerville", ui-serif, Georgia, serif;
+    overflow-x:hidden;
+  }
+
+  /* Lienzo centrado con “papel” */
+  .wrap{max-width:980px;margin:0 auto;padding:22px}
+  .paper{
+    position:relative; overflow:hidden; border-radius: var(--radius);
+    background: var(--papel);
+    box-shadow: var(--elev);
+    padding: clamp(18px, 4vw, 38px);
+    /* textura acuarela y salpicaduras doradas */
+    background-image:
+      radial-gradient(900px 600px at 10% 0%, rgba(160,200,240,.15), transparent 55%),
+      radial-gradient(700px 500px at 100% 0%, rgba(170,210,255,.12), transparent 60%),
+      radial-gradient(2px 2px at 12% 18%, rgba(201,166,74,.55), transparent 40%),
+      radial-gradient(2px 2px at 16% 22%, rgba(201,166,74,.35), transparent 40%),
+      radial-gradient(2px 2px at 20% 26%, rgba(201,166,74,.45), transparent 40%),
+      radial-gradient(2px 2px at 84% 86%, rgba(201,166,74,.45), transparent 40%),
+      radial-gradient(2px 2px at 88% 82%, rgba(201,166,74,.3), transparent 40%),
+      radial-gradient(2px 2px at 92% 78%, rgba(201,166,74,.5), transparent 40%);
+  }
+  /* Decoraciones PNG opcionales (flores acuarela) */
+  .decor{
+    position:absolute; pointer-events:none; opacity:.9; filter: saturate(1.05) contrast(1.02);
+    user-select:none;
+  }
+  .decor.top-left{
+top:-10px; left:-10px; width:min(105%)}
+  .decor.bottom-right{right:-10px; bottom:-10px; width:min(105%)}
+  .paper:before{
+    /* borde sutil de tarjeta */
+    content:""; position:absolute; inset:14px; border-radius: calc(var(--radius) - 12px);
+    border:1px solid rgba(60,80,110,.12); pointer-events:none;
+  }
+
+  /* Cabecera estilo “XV años” */
+  .hero{
+    position:relative; text-align:center; padding-top: 120px; padding-bottom: 10px;
+  }
+  .hero .badge{
+    display:inline-block; font-family:"Playfair Display", serif; font-weight:600;
+    color: var(--dorado); letter-spacing:.1em; font-size:.9rem;
+    border-top:2px solid rgba(201,166,74,.45); border-bottom:2px solid rgba(201,166,74,.45);
+    padding:.25rem .6rem; margin-bottom:.6rem;
+  }
+  .hero .XV{
+    font-family:"Great Vibes", cursive; color:#5277a6; font-size: clamp(42px, 8vw, 92px); line-height:1;padding-top: 20px;
+    margin:.2rem 0;
+  }
+  .hero .anios{
+    font-family:"Great Vibes", serif; color:#6e8db3; font-size:clamp(40px,6.8vw,64px); margin:0 0 .6rem;
+    letter-spacing:.08em;
+  }
+  .hero h1{
+    font-family:"Great Vibes", cursive; font-weight:400; color:#6285b4;
+    font-size: clamp(32px, 6.2vw, 64px); margin:.2rem 0 .6rem;
+  }
+  .frase{
+    text-align:center;background-color: #94c4e320; color:#7a8faa; font-size:clamp(14px,2.4vw,18px); margin:25px 25px 25px;
+  }
+
+  /* Tarjeta de datos */
+  .card{
+    background: rgba(255,255,255,.75);
+    border:1px solid rgba(60,80,110,.1);
+    border-radius:20px; padding:14px; margin:14px 0;
+    backdrop-filter: blur(2px);
+  }
+  .grid2{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
+  .cell{
+    border-radius:14px; border:1px dashed rgba(60,80,110,.18); padding:12px 14px; background:#ffffffcc;
+  }
+  .cell h3{
+    font-family:"Playfair Display", serif; font-weight:700; color:#5b79a0; margin:0 0 .25rem; font-size:1rem;
+  }
+  .cell p{margin:0; font-weight:700; color:#34506f}
+
+  /* Countdown / botones */
+  .countdown{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin:8px 0 0}
+  .time{min-width:86px; text-align:center; padding:12px 10px; border-radius:12px;
+    background:#ffffff; border:1px solid rgba(60,80,110,.14)}
+  .time strong{display:block; font-size:24px; color:#2e4b6d}
+  .btns{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:12px}
+  a.button,button.button{
+    appearance:none; border:none; cursor:pointer; text-decoration:none;
+    padding:10px 14px; border-radius:999px; font-weight:700;
+    background: linear-gradient(90deg, #c7dff6, #f3f8ff);
+    color:#2b4667; border:1px solid rgba(60,80,110,.18);
+    box-shadow: 0 6px 18px rgba(0,0,0,.08);
+    transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+  }
+  .button.ghost{background:#ffffff; color:#2b4667}
+  .button:hover{transform: translateY(-1px); box-shadow: 0 10px 22px rgba(0,0,0,.12); filter:saturate(1.04)}
+
+  /* Carrusel */
+  .carousel{position:relative; overflow:hidden; border-radius:16px; background:#fff}
+  .track{display:flex; gap:10px; will-change: transform}
+  .slide{min-width:100%; border-radius:16px; overflow:hidden}
+  .slide img{display:block; width:100%; height:52vh; object-fit:cover; object-position:center; background:#eef4fa}
+  .dots{display:flex; justify-content:center; gap:8px; margin-top:8px}
+  .dot{width:8px; height:8px; border-radius:999px; background:#cbd9ea}
+  .dot.active{background:#547eaf}
+  .ctrl{position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,.85);
+    color:#2d4a6d; padding:6px 10px; border-radius:999px; cursor:pointer; border:1px solid rgba(45,74,109,.25)}
+  .ctrl.left{left:8px} .ctrl.right{right:8px}
+
+  /* Mapa */
+  .map-wrap{border-radius:16px; overflow:hidden; border:1px solid rgba(60,80,110,.14); background:#fff}
+  .map{width:100%; height:390px; border:0}
+
+  /* Apariciones */
+  .reveal{opacity:0; transform: translateY(14px) scale(.992); filter:blur(1px);
+    transition: opacity .7s ease, transform .7s ease, filter .7s ease}
+  .reveal.visible{opacity:1; transform:none; filter:none}
+
+  /* Botón música */
+  .audio-toggle{
+    position: absolute; top: 10px; right: 10px;
+    font-size:.9rem; padding:6px 10px; border-radius:10px; border:1px solid rgba(60,80,110,.2);
+    background:#ffffffbf; color:#2f4e73
+  }
+
+  /* Responsive */
+  @media (max-width:800px){
+    .grid2{grid-template-columns:1fr}
+    .slide img{height:44vh}
+    .decor.top-left{width:105%} .decor.bottom-right{width:105%}
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="paper" id="paper">
+      <!-- PNGs de flores opcionales -->
+      <img id="decorTL" class="decor top-left" alt="" hidden>
+      <img id="decorBR" class="decor bottom-right" alt="" hidden>
+
+      <!-- partículas suaves -->
+      <canvas id="sparkCanvas" aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;"></canvas>
+
+      <!-- HERO -->
+      <section class="hero">
+        <button id="audioBtn" class="audio-toggle" type="button">🎵 Música: Off</button>
+        <div class="badge">MIS 15 AÑOS</div>
+        <div class="XV">XV</div>
+        <div class="anios">Años</div>
+        <h1>Lucia Tatiana Cardozo</h1>
+        <p class="frase">Que esta nueva etapa sea tan mágica como tú.</p>
+ <p class="frase">Hay momentos en la vida que marcan un antes y un después. Lo que los hace realmente especiales son las personas con las que comparten. Por eso quiero que seas arte de mi fiesta. </p>
+
+      </section>
+
+      <!-- DATOS -->
+      <section class="card reveal">
+        <div class="grid2">
+          <div class="cell">
+            <h3>📅 Fecha y hora</h3>
+            <p id="whenText">Viernes 19 de diciembre, 21:00 h</p>
+          </div>
+          <div class="cell">
+            <h3>📍 Lugar</h3>
+            <p id="whereText">Salón Nizza (Niza Eventos)</p>
+          </div>
+        </div>
+
+        <div class="countdown" aria-live="polite">
+          <div class="time"><strong id="d">--</strong>días</div>
+          <div class="time"><strong id="h">--</strong>hs</div>
+          <div class="time"><strong id="m">--</strong>min</div>
+          <div class="time"><strong id="s">--</strong>seg</div>
+        </div>
+
+        <div class="btns">
+          <a id="rsvpBtn" class="button" target="_blank" rel="noopener">Confirmar por WhatsApp</a>
+          <a id="mapsBtn" class="button ghost" target="_blank" rel="noopener">Cómo llegar</a>
+          <button id="icsBtn" class="button ghost" type="button">Agendar (ICS)</button>
+          
+        </div>
+      </section>
+
+      <!-- CARRUSEL -->
+      <section class="card reveal">
+        <h3 style="text-align:center;margin:.2rem 0 .6rem;color:#567aa9;font-family:'Playfair Display',serif">Galería</h3>
+        <div class="carousel" aria-roledescription="carousel">
+          <div class="track" id="track"></div>
+          <button class="ctrl left" id="prev" aria-label="Anterior">‹</button>
+          <button class="ctrl right" id="next" aria-label="Siguiente">›</button>
+        </div>
+        <div class="dots" id="dots"></div>
+      </section>
+
+      <!-- UBICACIÓN -->
+      <section class="card reveal">
+        <h3 style="text-align:center;margin:.2rem 0 .6rem;color:#567aa9;font-family:'Playfair Display',serif">Ubicación</h3>
+        <p style="text-align:center;margin:0 0 10px">Salón Nizza</p>
+<p style="text-align:center;margin:0 0 10px"><a id="mapsLink" class="button" target="_blank" rel="noopener">Abrir en Google Maps</a></p>
+
+        <div class="map-wrap">
+          <iframe id="mapFrame" class="map" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </section>
+
+      <section class="reveal" style="text-align:center; color:#6b84a2; margin:8px 0 0; margin-bottom: 100px;">
+        ¡Te esperamos!
+      </section>
+    </div>
+  </div>
+
+  <!-- Música opcional -->
+  <audio id="bgMusic" preload="auto" autoplay loop src=""></audio>
+
+<script>
+/* ==============================
+   CONFIG — Cambiá lo que necesites
+===============================*/
+const CONFIG = {
+  cumpleanera: "Lucia Tatiana Cardozo",
+  titulo: "XV — Lucia Tatiana Cardozo",
+  fechaISO: "2025-12-19T21:00:00-03:00",
+  textoCuando: "Viernes 19 de diciembre, 21:00 h",
+  textoDonde: "Salón Nizza (Niza Eventos)",
+  ciudad: "San Salvador de Jujuy",
+
+  // Coordenadas exactas (editar si hace falta)
+  coords: { lat: -24.2482, lng: -65.23382 },
+
+  // WhatsApp RSVP
+  whatsappNumero: "5493885777369",
+  whatsappMensaje: "Hola, confirmo asistencia a los 15 de Lucia Tatiana Cardozo. Somos ___ personas. ¡Gracias!",
+
+  // Música (opcional, .mp3)
+  musicaMP3: "assets/alashadas.mp3",
+
+  // Carrusel
+  fotos: [
+    "assets/foto1.jpg",
+    "assets/foto2.jpg",
+    "assets/foto3.jpg",
+    "assets/foto4.jpg",
+    "assets/foto5.jpg",
+    "assets/foto6.jpg"
+          ],
+  autoplay: true,
+  autoplayMs: 3600,
+
+  // PNGs de flores (opcional, esquinas). Dejá vacío para ocultarlas.
+  decorTopLeft: "assets/top.png",
+  decorBottomRight: "assets/bottom.png"
+};
+
+/* ==============================
+   LÓGICA — Funcionalidades
+===============================*/
+const $ = s=>document.querySelector(s);
+
+// Poner decoraciones si hay URLs
+if (CONFIG.decorTopLeft){ const tl=$("#decorTL"); tl.src=CONFIG.decorTopLeft; tl.hidden=false; }
+if (CONFIG.decorBottomRight){ const br=$("#decorBR"); br.src=CONFIG.decorBottomRight; br.hidden=false; }
+
+// Textos
+$("#whenText").textContent = CONFIG.textoCuando;
+$("#whereText").textContent = CONFIG.textoDonde;
+
+// Música
+// Música
+const audio = $("#bgMusic");
+if (CONFIG.musicaMP3) audio.src = CONFIG.musicaMP3;
+
+let musicOn = false;
+window.addEventListener("DOMContentLoaded", async () => {
+  try {
+    // Intento de reproducción automática
+    await audio.play();
+    musicOn = true;
+    $("#audioBtn").textContent = "🎵 Música: On";
+  } catch {
+    // Si el navegador bloquea el autoplay, queda en Off
+    musicOn = false;
+    $("#audioBtn").textContent = "🎵 Música: Off";
+  }
+});
+
+$("#audioBtn").addEventListener("click", async () => {
+  try {
+    if (!musicOn) {
+      await audio.play();
+      musicOn = true;
+      $("#audioBtn").textContent = "🎵 Música: On";
+    } else {
+      audio.pause();
+      musicOn = false;
+      $("#audioBtn").textContent = "🎵 Música: Off";
+    }
+  } catch {}
+});
+
+// WhatsApp
+$("#rsvpBtn").href = "https://wa.me/" + CONFIG.whatsappNumero + "?text=" + encodeURIComponent(CONFIG.whatsappMensaje);
+
+// Countdown
+const target = new Date(CONFIG.fechaISO).getTime();
+const dEl=$("#d"), hEl=$("#h"), mEl=$("#m"), sEl=$("#s");
+function tick(){
+  const now = Date.now(); let diff = Math.max(0, target - now);
+  const d = Math.floor(diff / 86400000); diff -= d*86400000;
+  const h = Math.floor(diff / 3600000); diff -= h*3600000;
+  const m = Math.floor(diff / 60000); diff -= m*60000;
+  const s = Math.floor(diff / 1000);
+  dEl.textContent = d; hEl.textContent=String(h).padStart(2,"0");
+  mEl.textContent=String(m).padStart(2,"0"); sEl.textContent=String(s).padStart(2,"0");
+}
+setInterval(tick,1000); tick();
+
+
+
+// ICS (sin backticks)
+document.getElementById("icsBtn").addEventListener("click", ()=>{
+  const dtStart = toICSDate(new Date(CONFIG.fechaISO));
+  const dtEnd   = toICSDate(new Date(new Date(CONFIG.fechaISO).getTime() + 5*3600000));
+  const desc = "¡Te espero! " + CONFIG.textoCuando + " – " + CONFIG.textoDonde;
+
+  const icsLines = [
+    "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Invitacion15//ES","CALSCALE:GREGORIAN","METHOD:PUBLISH",
+    "BEGIN:VEVENT","DTSTAMP:" + toICSDate(new Date()),
+    "DTSTART:" + dtStart,"DTEND:" + dtEnd,
+    "SUMMARY:" + escapeICS(CONFIG.titulo),
+    "DESCRIPTION:" + escapeICS(desc),
+    "LOCATION:" + escapeICS(CONFIG.textoDonde),
+    "END:VEVENT","END:VCALENDAR"
+  ];
+  const ics = icsLines.join("\r\n");
+  const blob = new Blob([ics], {type:"text/calendar;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = "XV-LuciaTatianaCardozo.ics";
+  document.body.appendChild(a); a.click();
+  setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 500);
+});
+function toICSDate(date){const p=n=>String(n).padStart(2,"0");return date.getUTCFullYear()+p(date.getUTCMonth()+1)+p(date.getUTCDate())+"T"+p(date.getUTCHours())+p(date.getUTCMinutes())+p(date.getUTCSeconds())+"Z"}
+function escapeICS(s){return String(s).replace(/([,;])/g,"\\$1").replace(/\n/g,"\\n")}
+
+// Aparición por secciones + “bursts” elegantes
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add("visible"); sparkleBurst(e.target, 12); }
+  });
+},{threshold:.14});
+document.querySelectorAll(".reveal").forEach(n=>io.observe(n));
+
+// MAPA
+const mapFrame=$("#mapFrame"), mapsLink=$("#mapsLink");
+function mapsUrl(lat,lng,name){ const q=encodeURIComponent(name||""); return "https://www.google.com/maps/search/?api=1&query="+lat+"%2C"+lng+(name?("%20("+q+")"):""); }
+function mapsEmbed(lat,lng){ return "https://www.google.com/maps?q="+lat+","+lng+"&z=16&output=embed"; }
+mapsLink.href = mapsUrl(CONFIG.coords.lat, CONFIG.coords.lng, CONFIG.textoDonde+" "+(CONFIG.ciudad||""));
+mapFrame.src = mapsEmbed(CONFIG.coords.lat, CONFIG.coords.lng);
+
+// CARRUSEL
+const track=$("#track"), dots=$("#dots"), prev=$("#prev"), next=$("#next");
+let index=0, startX=null, startTx=0, autoTimer=null;
+function buildSlides(){
+  track.innerHTML=""; dots.innerHTML="";
+  CONFIG.fotos.forEach((src,i)=>{
+    const slide=document.createElement("div"); slide.className="slide";
+    const img=new Image(); img.loading="lazy"; img.decoding="async"; img.src=src; img.alt="Foto "+(i+1);
+    slide.appendChild(img); track.appendChild(slide);
+    const dot=document.createElement("button"); dot.className="dot"; dot.setAttribute("aria-label","Ir a foto "+(i+1));
+    dot.addEventListener("click",()=>goTo(i)); dots.appendChild(dot);
+  });
+  update();
+}
+function update(){
+  const w=track.clientWidth; track.style.transform="translateX("+(-index*(w+10))+"px)";
+  Array.from(dots.children).forEach((d,i)=>d.classList.toggle("active", i===index));
+  prev.style.display = index===0 ? "none" : "block";
+  next.style.display = index===CONFIG.fotos.length-1 ? "none" : "block";
+}
+function goTo(i){ index=Math.max(0, Math.min(CONFIG.fotos.length-1, i)); update(); resetAuto(); }
+function go(step){ goTo(index+step); }
+function startDrag(e){
+  startX=(e.touches?e.touches[0].clientX:e.clientX); startTx=getTx();
+  window.addEventListener("mousemove",moveDrag);
+  window.addEventListener("touchmove",moveDrag,{passive:false});
+  window.addEventListener("mouseup",endDrag);
+  window.addEventListener("touchend",endDrag);
+}
+function moveDrag(e){
+  if(startX==null) return;
+  const x=(e.touches?e.touches[0].clientX:e.clientX);
+  const dx=x-startX; track.style.transition="none"; setTx(startTx+dx);
+  if(e.preventDefault) e.preventDefault();
+}
+function endDrag(){
+  const dx=getTx()-startTx; const w=track.clientWidth; track.style.transition="";
+  if(Math.abs(dx)>w*0.18){ go(dx<0?+1:-1); } else update();
+  startX=null;
+  window.removeEventListener("mousemove",moveDrag);
+  window.removeEventListener("touchmove",moveDrag);
+  window.removeEventListener("mouseup",endDrag);
+  window.removeEventListener("touchend",endDrag);
+}
+function getTx(){ const m=/translateX\((-?\d+(?:\.\d+)?)px\)/.exec(getComputedStyle(track).transform); return m? -parseFloat(m[1]) : 0; }
+function setTx(px){ track.style.transform="translateX("+(-px)+"px)"; }
+function resetAuto(){ if(autoTimer){clearInterval(autoTimer);autoTimer=null} if(CONFIG.autoplay){autoTimer=setInterval(()=>{ if(index>=CONFIG.fotos.length-1) index=-1; go(+1);}, CONFIG.autoplayMs||3800)} }
+prev.addEventListener("click",()=>go(-1)); next.addEventListener("click",()=>go(+1));
+track.addEventListener("mousedown",startDrag); track.addEventListener("touchstart",startDrag,{passive:true});
+window.addEventListener("resize",update);
+buildSlides(); resetAuto();
+
+/* ==============================
+   Partículas delicadas (explosiones suaves)
+===============================*/
+const canvas = document.getElementById("sparkCanvas");
+const ctx = canvas.getContext("2d");
+let W=0,H=0, particles=[];
+const colors = [
+  "rgba(201,166,74,0.85)","rgba(201,166,74,0.55)",
+  "rgba(146,177,214,0.9)","rgba(255,255,255,0.95)","rgba(255,255,255,0.7)"
+];
+function resizeCanvas(){
+  const paper = document.getElementById("paper");
+  canvas.width = paper.clientWidth; canvas.height = paper.clientHeight; W=canvas.width; H=canvas.height;
+}
+new ResizeObserver(resizeCanvas).observe(document.getElementById("paper")); resizeCanvas();
+function burst(x,y,count=16, spread=1.2){
+  for(let i=0;i<count;i++){
+    const a = (Math.PI*2) * (i/count) + (Math.random()*0.6 - 0.3);
+    const speed = 40 + Math.random()*110, life = .9 + Math.random()*1.1;
+    particles.push({x,y, vx:Math.cos(a)*speed*spread, vy:Math.sin(a)*speed*spread, g:18, life, age:0, alpha:1, size:1.2+Math.random()*2.2, c:colors[(Math.random()*colors.length)|0], star:i%3===0});
+  }
+}
+let last = performance.now();
+function frame(now){
+  const dt=Math.min(.033,(now-last)/1000); last=now; ctx.clearRect(0,0,W,H);
+  for(let i=particles.length-1;i>=0;i--){
+    const p=particles[i]; p.age+=dt; const t=p.age/p.life; if(t>=1){particles.splice(i,1); continue;}
+    p.vy += p.g*dt; p.x += p.vx*dt; p.y += p.vy*dt; p.alpha = 1 - t;
+    ctx.globalAlpha=p.alpha; ctx.fillStyle=p.c;
+    if(p.star){ drawStar(p.x,p.y,4,p.size*2.2,p.size*.9); } else { ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fill(); }
+  }
+  requestAnimationFrame(frame);
+}
+function drawStar(x,y,points,outer,inner){
+  ctx.beginPath();
+  for (let i=0;i<points*2;i++){
+    const r = i%2===0 ? outer : inner;
+    const a = (i*Math.PI)/points;
+    ctx.lineTo(x + Math.cos(a)*r, y + Math.sin(a)*r);
+  }
+  ctx.closePath(); ctx.fill();
+}
+requestAnimationFrame(frame);
+// Bursts iniciales y al revelar
+window.addEventListener("load", ()=>{ burst(W*0.25, H*0.22, 14, 1.1); burst(W*0.72, H*0.18, 12, 1.05); });
+document.getElementById("paper").addEventListener("pointerdown",(e)=>{ const r=e.currentTarget.getBoundingClientRect(); burst(e.clientX-r.left,e.clientY-r.top,16,1.2); });
+function sparkleBurst(el, count=12){
+  const r = el.getBoundingClientRect(), pr = document.getElementById("paper").getBoundingClientRect();
+  const x = (r.left+r.width/2)-pr.left; const y = (r.top-pr.top)+20;
+  if (x>=0&&x<=W&&y>=0&&y<=H) burst(x,y,count,1.1);
+}
+</script>
+</body>
+</html>
