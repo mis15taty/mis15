@@ -31,7 +31,8 @@
     --radius:26px;
     --elev:0 12px 28px rgba(0,0,0,.18);
   }
-  ,:before,*:after{box-sizing:border-box}
+  /* Corregido: aplicar box-sizing a todos los elementos y pseudoelementos */
+  *, *::before, *::after { box-sizing: border-box }
   html,body{height:100%}
   body{
     margin:0; background: linear-gradient(135deg, #0b2038, var(--azul-fondo));
@@ -63,8 +64,9 @@
     user-select:none;
   }
   .decor.top-left{
-top:-10px; left:-10px; width:min(105%)}
-  .decor.bottom-right{right:-10px; bottom:-10px; width:min(105%)}
+    top:-10px; left:-10px; width:105%;
+  }
+  .decor.bottom-right{right:-10px; bottom:-10px; width:105%}
   .paper:before{
     /* borde sutil de tarjeta */
     content:""; position:absolute; inset:14px; border-radius: calc(var(--radius) - 12px);
@@ -94,6 +96,7 @@ top:-10px; left:-10px; width:min(105%)}
     font-size: clamp(32px, 6.2vw, 64px); margin:.2rem 0 .6rem;
   }
   .frase{
+ font-family:"Great Vibes", cursive; font-weight:400; color:#6285b4;
     text-align:center;background-color: #94c4e320; color:#7a8faa; font-size:clamp(14px,2.4vw,18px); margin:25px 25px 25px;
   }
 
@@ -134,7 +137,14 @@ top:-10px; left:-10px; width:min(105%)}
   .carousel{position:relative; overflow:hidden; border-radius:16px; background:#fff}
   .track{display:flex; gap:10px; will-change: transform}
   .slide{min-width:100%; border-radius:16px; overflow:hidden}
-  .slide img{display:block; width:100%; height:52vh; object-fit:cover; object-position:center; background:#eef4fa}
+  .slide img {
+      display: block;
+      width: 100%;
+      height: auto; /* cambia height fijo por auto */
+      object-fit: cover;
+      object-position: center;
+      background: #eef4fa;
+    }
   .dots{display:flex; justify-content:center; gap:8px; margin-top:8px}
   .dot{width:8px; height:8px; border-radius:999px; background:#cbd9ea}
   .dot.active{background:#547eaf}
@@ -183,7 +193,7 @@ top:-10px; left:-10px; width:min(105%)}
         <div class="XV">XV</div>
         <div class="anios">Años</div>
         <h1>Lucia Tatiana Cardozo</h1>
-         <p class="frase">Hay momentos en la vida que marcan un antes y un después. Lo que los hace realmente especiales son las personas con las que comparten. Por eso quiero que seas arte de mi fiesta. </p>
+ <p class="frase">Hay momentos en la vida que marcan un antes y un después. Lo que los hace realmente especiales son las personas con las que comparten. Por eso quiero que seas arte de mi fiesta. </p>
 
       </section>
 
@@ -208,7 +218,7 @@ top:-10px; left:-10px; width:min(105%)}
         </div>
 
         <div class="btns">
-         
+          <button id="confirmBtn" class="button">Confirmar asistencia</button>
           <a id="mapsBtn" class="button ghost" target="_blank" rel="noopener">Cómo llegar</a>
           <button id="icsBtn" class="button ghost" type="button">Agendar (ICS)</button>
           
@@ -245,8 +255,7 @@ top:-10px; left:-10px; width:min(105%)}
 
   <!-- Música opcional -->
   <audio id="bgMusic" preload="auto" autoplay loop src=""></audio>
-
-  <!-- Modal HTML -->
+ <!-- Modal HTML -->
   <div id="modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); justify-content:center; align-items:center;">
     <div style="background:#fff; border-radius:12px; padding:20px; max-width:320px; width:90%;">
       <h2>Confirmar asistencia</h2>
@@ -255,9 +264,11 @@ top:-10px; left:-10px; width:min(105%)}
       <button id="modalCancel" class="button ghost" style="width:100%; margin-top:8px;">Cancelar</button>
     </div>
   </div>
-
-
 <script>
+
+ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxLrr6b8IK1rVjw7Rpd9RR8OTPUMail_jOGc8zrfR2YLGaWqI774tZZdiXXgJF1U3j7Ow/exec";
+
+    const $ = s => document.querySelector(s);
 /* ==============================
    CONFIG — Cambiá lo que necesites
 ===============================*/
@@ -272,7 +283,10 @@ const CONFIG = {
   // Coordenadas exactas (editar si hace falta)
   coords: { lat: -24.2482, lng: -65.23382 },
 
- 
+  // WhatsApp RSVP
+  whatsappNumero: "5493885777369",
+  whatsappMensaje: "Hola, confirmo asistencia a los 15 de Lucia Tatiana Cardozo. Somos ___ personas. ¡Gracias!",
+
   // Música (opcional, .mp3)
   musicaMP3: "assets/alashadas.mp3",
 
@@ -296,7 +310,6 @@ const CONFIG = {
 /* ==============================
    LÓGICA — Funcionalidades
 ===============================*/
-const $ = s=>document.querySelector(s);
 
 // Poner decoraciones si hay URLs
 if (CONFIG.decorTopLeft){ const tl=$("#decorTL"); tl.src=CONFIG.decorTopLeft; tl.hidden=false; }
@@ -307,43 +320,40 @@ $("#whenText").textContent = CONFIG.textoCuando;
 $("#whereText").textContent = CONFIG.textoDonde;
 
 // Música
-// Música
-const audio = $("#bgMusic");
-if (CONFIG.musicaMP3) audio.src = CONFIG.musicaMP3;
+    const audio = $("#bgMusic");
+    if (CONFIG.musicaMP3) audio.src = CONFIG.musicaMP3;
 
-let musicOn = false;
-window.addEventListener("DOMContentLoaded", async () => {
-  try {
-    // Intento de reproducción automática
-    await audio.play();
-    musicOn = true;
-    $("#audioBtn").textContent = "🎵 Música: On";
-  } catch {
-    // Si el navegador bloquea el autoplay, queda en Off
-    musicOn = false;
-    $("#audioBtn").textContent = "🎵 Música: Off";
-  }
-});
+    let musicOn = false;
+    window.addEventListener("DOMContentLoaded", () => {
+      // intentar reproducir tras un intento automático (no interfiere con el diseño)
+      setTimeout(async () => {
+        try {
+          await audio.play();
+          musicOn = true;
+          $("#audioBtn").textContent = "🎵 Música: On";
+        } catch {
+          musicOn = false;
+          $("#audioBtn").textContent = "🎵 Música: Off";
+        }
+      }, 5000);
 
-$("#audioBtn").addEventListener("click", async () => {
-  try {
-    if (!musicOn) {
-      await audio.play();
-      musicOn = true;
-      $("#audioBtn").textContent = "🎵 Música: On";
-    } else {
-      audio.pause();
-      musicOn = false;
-      $("#audioBtn").textContent = "🎵 Música: Off";
-    }
-  } catch {}
-});
+      // Botón de música
+      $("#audioBtn").addEventListener("click", async () => {
+        try {
+          if (!musicOn) {
+            await audio.play();
+            musicOn = true;
+            $("#audioBtn").textContent = "🎵 Música: On";
+          } else {
+            audio.pause();
+            musicOn = false;
+            $("#audioBtn").textContent = "🎵 Música: Off";
+          }
+        } catch {}
+      });
+    });
 
-   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzayEcwvj-Rr9cLnf-7IVfe1Ig0L8yxalGSTkVL4vszz4lmwz0BcluCrkzZ4bCBUyHVWw/exec";
-
-    const $ = s => document.querySelector(s);
-
-   // Modal lógica
+    // Modal lógica
     $("#confirmBtn").addEventListener("click", () => {
       $("#modal").style.display = "flex";
       $("#inputName").value = "";
@@ -377,11 +387,6 @@ $("#audioBtn").addEventListener("click", async () => {
     });
 
 
-
-
-
-
-
 // Countdown
 const target = new Date(CONFIG.fechaISO).getTime();
 const dEl=$("#d"), hEl=$("#h"), mEl=$("#m"), sEl=$("#s");
@@ -395,6 +400,8 @@ function tick(){
   mEl.textContent=String(m).padStart(2,"0"); sEl.textContent=String(s).padStart(2,"0");
 }
 setInterval(tick,1000); tick();
+
+
 
 
 
@@ -451,13 +458,17 @@ function buildSlides(){
     const dot=document.createElement("button"); dot.className="dot"; dot.setAttribute("aria-label","Ir a foto "+(i+1));
     dot.addEventListener("click",()=>goTo(i)); dots.appendChild(dot);
   });
-  update();
+  // Esperar a que el layout calcule dimensiones y luego actualizar
+  requestAnimationFrame(update);
 }
 function update(){
-  const w=track.clientWidth; track.style.transform="translateX("+(-index*(w+10))+"px)";
+  const containerWidth = track.parentElement.clientWidth;
+  const gap = parseFloat(getComputedStyle(track).gap) || 10;
+  const slideWidth = containerWidth;
+  track.style.transform = "translateX("+(-(index*(slideWidth+gap)))+"px)";
   Array.from(dots.children).forEach((d,i)=>d.classList.toggle("active", i===index));
-  prev.style.display = index===0 ? "none" : "block";
-  next.style.display = index===CONFIG.fotos.length-1 ? "none" : "block";
+  if(prev) prev.style.display = index===0 ? "none" : "block";
+  if(next) next.style.display = index===CONFIG.fotos.length-1 ? "none" : "block";
 }
 function goTo(i){ index=Math.max(0, Math.min(CONFIG.fotos.length-1, i)); update(); resetAuto(); }
 function go(step){ goTo(index+step); }
@@ -475,18 +486,30 @@ function moveDrag(e){
   if(e.preventDefault) e.preventDefault();
 }
 function endDrag(){
-  const dx=getTx()-startTx; const w=track.clientWidth; track.style.transition="";
-  if(Math.abs(dx)>w*0.18){ go(dx<0?+1:-1); } else update();
+  const dx=getTx()-startTx; const containerWidth = track.parentElement.clientWidth; track.style.transition="";
+  if(Math.abs(dx)>containerWidth*0.18){ go(dx<0?+1:-1); } else update();
   startX=null;
   window.removeEventListener("mousemove",moveDrag);
   window.removeEventListener("touchmove",moveDrag);
   window.removeEventListener("mouseup",endDrag);
   window.removeEventListener("touchend",endDrag);
 }
-function getTx(){ const m=/translateX\((-?\d+(?:\.\d+)?)px\)/.exec(getComputedStyle(track).transform); return m? -parseFloat(m[1]) : 0; }
+function getTx(){
+  // Intenta leer translateX desde style ("translateX(...px)") o desde la matriz computada
+  const style = track.style.transform || getComputedStyle(track).transform;
+  const m1 = /translateX\((-?\d+(?:\.\d+)?)px\)/.exec(style);
+  if(m1) return -parseFloat(m1[1]);
+  const m2 = /matrix\(([^)]+)\)/.exec(style);
+  if(m2){
+    const parts = m2[1].split(',').map(s=>parseFloat(s.trim()));
+    // matrix(a, b, c, d, tx, ty)
+    if(parts.length >= 6){ const tx = parts[4]; return -tx; }
+  }
+  return 0;
+}
 function setTx(px){ track.style.transform="translateX("+(-px)+"px)"; }
 function resetAuto(){ if(autoTimer){clearInterval(autoTimer);autoTimer=null} if(CONFIG.autoplay){autoTimer=setInterval(()=>{ if(index>=CONFIG.fotos.length-1) index=-1; go(+1);}, CONFIG.autoplayMs||3800)} }
-prev.addEventListener("click",()=>go(-1)); next.addEventListener("click",()=>go(+1));
+if(prev) prev.addEventListener("click",()=>go(-1)); if(next) next.addEventListener("click",()=>go(+1));
 track.addEventListener("mousedown",startDrag); track.addEventListener("touchstart",startDrag,{passive:true});
 window.addEventListener("resize",update);
 buildSlides(); resetAuto();
@@ -544,7 +567,4 @@ function sparkleBurst(el, count=12){
 }
 </script>
 </body>
-
 </html>
-
-
