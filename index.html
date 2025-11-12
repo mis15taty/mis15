@@ -183,8 +183,7 @@ top:-10px; left:-10px; width:min(105%)}
         <div class="XV">XV</div>
         <div class="anios">Años</div>
         <h1>Lucia Tatiana Cardozo</h1>
-        <p class="frase">Que esta nueva etapa sea tan mágica como tú.</p>
- <p class="frase">Hay momentos en la vida que marcan un antes y un después. Lo que los hace realmente especiales son las personas con las que comparten. Por eso quiero que seas arte de mi fiesta. </p>
+         <p class="frase">Hay momentos en la vida que marcan un antes y un después. Lo que los hace realmente especiales son las personas con las que comparten. Por eso quiero que seas arte de mi fiesta. </p>
 
       </section>
 
@@ -209,7 +208,7 @@ top:-10px; left:-10px; width:min(105%)}
         </div>
 
         <div class="btns">
-          <a id="rsvpBtn" class="button" target="_blank" rel="noopener">Confirmar por WhatsApp</a>
+          <a id="confirmBtn" class="button" target="_blank" rel="noopener">Confirmar asistencia</a>
           <a id="mapsBtn" class="button ghost" target="_blank" rel="noopener">Cómo llegar</a>
           <button id="icsBtn" class="button ghost" type="button">Agendar (ICS)</button>
           
@@ -262,10 +261,7 @@ const CONFIG = {
   // Coordenadas exactas (editar si hace falta)
   coords: { lat: -24.2482, lng: -65.23382 },
 
-  // WhatsApp RSVP
-  whatsappNumero: "5493885777369",
-  whatsappMensaje: "Hola, confirmo asistencia a los 15 de Lucia Tatiana Cardozo. Somos ___ personas. ¡Gracias!",
-
+ 
   // Música (opcional, .mp3)
   musicaMP3: "assets/alashadas.mp3",
 
@@ -332,8 +328,7 @@ $("#audioBtn").addEventListener("click", async () => {
   } catch {}
 });
 
-// WhatsApp
-$("#rsvpBtn").href = "https://wa.me/" + CONFIG.whatsappNumero + "?text=" + encodeURIComponent(CONFIG.whatsappMensaje);
+
 
 // Countdown
 const target = new Date(CONFIG.fechaISO).getTime();
@@ -497,4 +492,5 @@ function sparkleBurst(el, count=12){
 }
 </script>
 </body>
+
 </html>
