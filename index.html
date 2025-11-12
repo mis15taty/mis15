@@ -267,6 +267,8 @@
 <script>
 
  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw5PeSZdoOtheTwWxdDshOKvIc4RB5ln2DTzssvMb_xNEadDUaM6zkaPwU0jplmszRfTg/exec";
+  const proxy = "https://corsproxy.io/?";
+
 
     const $ = s => document.querySelector(s);
 /* ==============================
@@ -370,7 +372,7 @@ $("#whereText").textContent = CONFIG.textoDonde;
         return;
       }
       try {
-        const resp = await fetch(SCRIPT_URL, {
+        const resp = await fetch(proxy + SCRIPT_URL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ nombre })
@@ -568,5 +570,6 @@ function sparkleBurst(el, count=12){
 </script>
 </body>
 </html>
+
 
 
